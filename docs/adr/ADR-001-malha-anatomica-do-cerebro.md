@@ -53,3 +53,20 @@ Esta ADR diverge do que o repositório já contém, e a divergência fica regist
 3. Verificar e registrar a licença e a versão do fsaverage usado; **não verificadas** neste registro (o CC0 documentado
    vale para o ds006128, não para o fsaverage).
 4. Decidir o nome final do artefato (`brain.glb` ou `brain-surface.glb`) e, se houver troca, regenerar hashes e `ACEITE`.
+
+## Evidência de insumos (caminho individual)
+
+O `source.zip` recebido em 2026-10-07 contém os cinco arquivos originais do caminho **OpenNeuro T1w → FreeSurfer → GLB**
+(ds006128 `sub-01`, snapshot 1.0.11, CC0-1.0). São **byte a byte idênticos** aos já versionados em `pipeline/source/`
+(comparados com `cmp`), então não foram duplicados no repositório.
+
+| Arquivo | Papel | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| `lh.pial.T1` | superfície pial esquerda (153.253 vértices · 306.502 faces) | 5.518.077 | `2aac780d…bf09f8` |
+| `rh.pial.T1` | superfície pial direita (152.558 vértices · 305.112 faces) | 5.493.057 | `65569035…ce3d31` |
+| `lh.sulc` | profundidade sulcal esquerda | 613.027 | `0aad26d4…d5a9ac` |
+| `rh.sulc` | profundidade sulcal direita | 610.247 | `cb83fcb0…c68e83` |
+| `aseg.mgz` | segmentação (cerebelo e tronco) | 440.891 | `d2c386e1…41a96` |
+
+Estes insumos sustentam o segundo caminho da tabela de alternativas. **Nenhum arquivo fsaverage foi fornecido ou obtido**;
+a pendência 1 (fsaverage × `sub-01`) continua aberta.
