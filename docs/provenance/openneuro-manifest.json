@@ -1,0 +1,39 @@
+{
+  "id": "HOME-BRAIN-ASSET-001",
+  "version": "1.1.0",
+  "encoding": "int16 little-endian x,y,z per point; value = int16 / 32767 * 2 (Three.js units)",
+  "license": "CC0-1.0",
+  "source_dataset": "OpenNeuro ds006128, sub-01, snapshot 1.0.11",
+  "source_doi": "https://doi.org/10.18112/openneuro.ds006128.v1.0.11",
+  "sources": {
+    "lh.pial.T1": {
+      "url": "https://s3.amazonaws.com/openneuro.org/ds006128/derivatives/FreeSurfer/sub-01/surf/lh.pial.T1",
+      "sha256": "2aac780dd856e8be55362cec46663bd0eb14c03d3cac7ac3969f2083a7bf09f8"
+    },
+    "rh.pial.T1": {
+      "url": "https://s3.amazonaws.com/openneuro.org/ds006128/derivatives/FreeSurfer/sub-01/surf/rh.pial.T1",
+      "sha256": "655690359a5cf3c4cd498b31594a22014d7ad4b85620248ae60ed82b25ce3d31"
+    },
+    "lh.sulc": {
+      "url": "https://s3.amazonaws.com/openneuro.org/ds006128/derivatives/FreeSurfer/sub-01/surf/lh.sulc",
+      "sha256": "0aad26d4ab724eacdb337321fcf2ecae6ba3b1f2530a65729c55501875d5a9ac"
+    },
+    "rh.sulc": {
+      "url": "https://s3.amazonaws.com/openneuro.org/ds006128/derivatives/FreeSurfer/sub-01/surf/rh.sulc",
+      "sha256": "cb83fcb0fd4e7cffef77636819a2faf69fe98c36e38d3d634b45899654c68e83"
+    },
+    "aseg.mgz": {
+      "url": "https://s3.amazonaws.com/openneuro.org/ds006128/derivatives/FreeSurfer/sub-01/mri/aseg.mgz",
+      "sha256": "d2c386e1aaa05074042b07c8c9c53e999e6172053586562227c97e77a1a41a96"
+    }
+  },
+  "changes": "Area × sulcal-depth weighted points on the left/right pial surfaces (36000; gyral crowns kept, sulcal fundi thinned) plus shell points of aseg cerebellum (5000) and brain stem (1000); centered, uniformly scaled to 3.8; deterministic seed 41005. No anatomy-to-function localization.",
+  "generator": "apps/blog/scripts/prepare-home-brain.mjs",
+  "points": 42000,
+  "files": {
+    "brain-points.bin": {
+      "bytes": 252000,
+      "sha256": "ddbfaf80c091dbdb42eb01d0da94578971759dbb9f81ba1094eebb766b228451"
+    }
+  }
+}

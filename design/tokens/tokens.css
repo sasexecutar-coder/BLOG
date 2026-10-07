@@ -1,0 +1,27 @@
+:root {
+  --raw-bg-base: #fff; --raw-bg-subtle: #f7f5f3; --raw-surface: #fff; --raw-surface-soft: #fbfaf8;
+  --raw-text-primary: #111; --raw-text-secondary: #6b6f76; --raw-text-muted: #8e939a;
+  --raw-border-subtle: #e8e5e1; --raw-border-strong: #d9d5d0;
+  --raw-orange: #f56a1c; --raw-orange-dark: #e85a0c; --raw-orange-soft: #ffe7d8;
+  --raw-dot-orange: #f3a06b; --raw-dot-neutral: #e9e7e3;
+  --raw-success-soft: #eef7f0; --raw-warning-soft: #fff5e8;
+  --color-page: var(--raw-bg-base); --color-canvas: var(--raw-bg-subtle); --color-surface: var(--raw-surface);
+  --color-surface-soft: var(--raw-surface-soft); --color-text: var(--raw-text-primary);
+  --color-support: var(--raw-text-secondary); --color-muted: var(--raw-text-muted);
+  --color-border: var(--raw-border-subtle); --color-border-strong: var(--raw-border-strong);
+  --color-brand: var(--raw-orange); --color-brand-strong: var(--raw-orange-dark);
+  --color-brand-soft: var(--raw-orange-soft); --color-dot: var(--raw-dot-orange);
+  --color-wire: var(--raw-dot-neutral); --color-success: var(--raw-success-soft); --color-warning: var(--raw-warning-soft);
+  --font-base: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --type-hero: 38px; --type-h1: 48px; --type-h2: 32px; --type-h3: 24px;
+  --type-body-lg: 22px; --type-body: 18px; --type-body-sm: 16px; --type-caption: 13px; --type-eyebrow: 12px;
+  --space-xs: 4px; --space-sm: 8px; --space-md: 12px; --space-lg: 16px; --space-xl: 24px;
+  --space-xxl: 32px; --space-xxxl: 48px; --space-hero: 64px; --space-section: 96px;
+  --radius-sm: 12px; --radius-md: 16px; --radius-lg: 20px; --radius-xl: 24px; --radius-pill: 9999px;
+  --shadow-soft: 0 6px 20px rgba(17,17,17,.04); --shadow-floating: 0 10px 28px rgba(17,17,17,.06);
+  --motion-fast: 180ms ease; --motion-normal: 240ms ease; --motion-slow: 320ms ease;
+  --layout-max: 1280px; --layout-gutter: 16px;
+}
+@media (min-width: 700px) { :root { --type-hero: 56px; --layout-gutter: 24px; } }
+@media (min-width: 1100px) { :root { --type-hero: 72px; } }
+@media (prefers-reduced-motion: reduce) { :root { --motion-fast: 0ms; --motion-normal: 0ms; --motion-slow: 0ms; } }

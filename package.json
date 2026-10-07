@@ -1,0 +1,11 @@
+{
+  "name": "blog",
+  "private": true,
+  "type": "module",
+  "description": "Risco Cognitivo — cérebro editorial HOME-BRAIN-001 (assets, cena e pipeline)",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "assets:check": "node pipeline/build.mjs --out pipeline/out --check",
+    "assets:build": "node pipeline/build.mjs --out public/models/home-brain --check"
+  }
+}

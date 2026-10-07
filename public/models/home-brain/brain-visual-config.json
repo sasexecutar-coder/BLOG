@@ -1,0 +1,59 @@
+{
+  "id": "HOME-BRAIN-001",
+  "units": {
+    "distanceUnits": "scene units; 1 un. = 45.58 mm",
+    "spacingUnits": "scene units (object space)",
+    "angles": "degrees",
+    "speed": "rad/s",
+    "sizePx": "CSS px at reference distance 6.6 un.",
+    "widthPx": "screen px (fwidth)",
+    "colors": "sRGB hex"
+  },
+  "version": "1.1.0",
+  "mode": "combined",
+  "hideBack": true,
+  "background": "#ffffff",
+  "surface": {
+    "opacity": 1,
+    "roughness": 0.82,
+    "sulcStrength": 1,
+    "crown": "#f7f7f9",
+    "fundus": "#c3c4cc",
+    "subcortical": 0.32
+  },
+  "particles": {
+    "density": 1,
+    "sizePx": 1.8,
+    "opacity": 0.9,
+    "color": "#a3a8f5",
+    "crownColor": "#5a5fe8",
+    "crownMix": 0.55,
+    "backFade": 0.85
+  },
+  "lines": {
+    "visible": true,
+    "color": "#d6d8f2",
+    "intensity": 0.7,
+    "spacingUnits": 0.24,
+    "meridians": 24,
+    "widthPx": 1
+  },
+  "light": {
+    "ambient": 1.15,
+    "key": 1.7,
+    "fill": 0.55,
+    "keyAzimuthDeg": -35,
+    "keyElevationDeg": 40,
+    "depthFog": 0.35
+  },
+  "camera": {
+    "view": "three-quarter",
+    "distanceUnits": 6,
+    "fovDeg": 34
+  },
+  "motion": {
+    "speedRadPerSec": 0.12,
+    "paused": false,
+    "reducedMotion": false
+  }
+}
