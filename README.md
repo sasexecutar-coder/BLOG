@@ -31,6 +31,7 @@ BLOG/
 ├── package.json                  scripts do pipeline (sem dependências)
 ├── docs/
 │   ├── DECISIONS.md              decisões em aberto e conflitos entre as entradas
+│   ├── adr/                      ADR-001: malha anatômica e direção visual
 │   ├── brief/                    BRIEF, ACEITE, SURFACE, CONFLITOS, comandos do Claude Design e de integração
 │   └── provenance/               avisos de terceiros, manifesto OpenNeuro, build-report.json
 ├── design/
@@ -109,7 +110,7 @@ Nenhuma medição de FPS ou captura de tela foi feita; nada disso deve ser infer
 
 ## Próximos passos
 
-1. Resolver as decisões abertas em [`docs/DECISIONS.md`](docs/DECISIONS.md) (paleta e repositório de destino do app).
+1. Resolver as decisões abertas em [`docs/DECISIONS.md`](docs/DECISIONS.md) (paleta, repositório do app e fonte da malha, [ADR-001](docs/adr/ADR-001-malha-anatomica-do-cerebro.md)).
 2. Scaffold do app React Router + TypeScript para Cloudflare Workers, fixando versões.
 3. Componente único do cérebro (props: modo, conceito selecionado, movimento, evento de seleção) usado em Home e `/mapas/`.
 4. Revisão visual (G2) com painel de controles e exportação da configuração.

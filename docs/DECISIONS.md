@@ -26,6 +26,11 @@ Claude Design, gerada em 2026-10-06 com a malha). Itens abertos precisam de deci
 (`sasexecutar-coder/blog`) hoje guarda assets, cena e pipeline. Definir: (a) o app nasce aqui, ou (b) este repositório
 é a fonte do objeto e o app consome os assets no outro repositório.
 
+### D-003 — Fonte da malha: fsaverage × sub-01 individual
+
+Registrada em [`adr/ADR-001-malha-anatomica-do-cerebro.md`](adr/ADR-001-malha-anatomica-do-cerebro.md). Recomendação:
+fsaverage (referência) como ponto de partida; o repositório já contém o GLB do `sub-01`. Pendente de confirmação.
+
 ## Divergências encontradas e tratadas
 
 | Achado | Tratamento |
