@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cérebro — comparativo 3 ângulos × 2 temas (393×852)</title>
+<link rel="stylesheet" href="../../design-system/nocturne/styles.css">
+<style>
+  body { padding: var(--space-8); display: grid; gap: var(--space-8); }
+  h1 { font-size: 20px; margin: 0; }
+  .table { font-size: 12px; font-variant-numeric: tabular-nums; border-collapse: collapse; }
+  .table th, .table td { text-align: left; padding: var(--space-2) var(--space-4); }
+  .grid { display: flex; flex-wrap: wrap; gap: var(--space-8); align-items: flex-start; }
+  figure { margin: 0; display: grid; gap: var(--space-3); }
+  figcaption { font-size: 12px; color: var(--color-neutral-400); }
+  .phone { width: 393px; height: 852px; border-radius: 44px; overflow: hidden; box-shadow: var(--shadow-md); }
+  .phone iframe { width: 393px; height: 852px; border: 0; display: block; }
+</style>
+</head>
+<body>
+<h1>Rodada 1 — painel ?debug=1, 393×852, freeze=1</h1>
+<table class="table"><thead><tr><th>Tema</th><th>Ângulo</th><th>Largura</th><th>Init (ms)</th><th>Pontos</th><th>Dist. câmera</th><th>Palco</th></tr></thead><tbody id="rows"></tbody></table>
+<div class="grid" id="grid"></div>
+<script>
+  const back = new URLSearchParams(location.search).get('back') || 'occlude';
+  const combos = []; for (const theme of ['noite', 'claro']) for (const angle of ['lateral', 'posterior', 'frontal']) combos.push({ theme, angle });
+  const grid = document.getElementById('grid'), rows = document.getElementById('rows');
+  combos.forEach((c, i) => {
+    const f = document.createElement('figure');
+    f.innerHTML = `<figcaption>${c.theme} · ${c.angle} · ${back}</figcaption><div class="phone"><iframe src="Brain Pontos.html?theme=${c.theme}&angle=${c.angle}&back=${back}&freeze=1&debug=1" title="${c.theme} ${c.angle}"></iframe></div>`;
+    grid.appendChild(f); c.frame = f.querySelector('iframe');
+    const tr = document.createElement('tr'); tr.innerHTML = `<td>${c.theme}</td><td>${c.angle}</td><td colspan="5">…</td>`; rows.appendChild(tr); c.tr = tr;
+  });
+  const tick = setInterval(() => {
+    let done = 0;
+    for (const c of combos) {
+      const d = c.frame.contentWindow && c.frame.contentWindow.__brainDebug;
+      if (!d || d.widthPct == null) continue; done++;
+      c.tr.innerHTML = `<td>${c.theme}</td><td>${c.angle}</td><td>${d.widthPct.toFixed(1)} %</td><td>${Math.round(d.timings.init)}</td><td>${d.points} / ${d.sourcePoints}</td><td>${d.camDist.toFixed(3)}</td><td>${d.stage.join('×')}</td>`;
+    }
+    if (done === combos.length) clearInterval(tick);
+  }, 500);
+</script>
+</body>
+</html>

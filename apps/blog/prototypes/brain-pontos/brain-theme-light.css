@@ -1,0 +1,11 @@
+/* PROVISÓRIO (D-005) — tema claro fora do design system.
+   Valores copiados do bloco `html.light` de apps/blog/prototypes/brain/Brain View.html
+   (rampas do Nocturne espelhadas 100↔900), só com o seletor trocado para [data-rc-theme="light"].
+   Este é o único arquivo do protótipo com cores literais. */
+html[data-rc-theme="light"] {
+  --color-bg: #f3f5fe; --color-surface: #fafbff; --color-text: #292b31; --color-accent: #796cbf;
+  --color-divider: color-mix(in srgb, #292b31 14%, transparent);
+  --color-neutral-100:#292b31;--color-neutral-200:#3f424d;--color-neutral-300:#595d6c;--color-neutral-400:#75798c;--color-neutral-500:#75798c;--color-neutral-600:#9397ab;--color-neutral-700:#b2b6ca;--color-neutral-800:#cfd3e5;--color-neutral-900:#e4e7f5;
+  --color-accent-100:#2b2741;--color-accent-200:#423a6a;--color-accent-300:#5d5294;--color-accent-400:#796cbf;--color-accent-500:#968ae0;--color-accent-600:#b5abfc;--color-accent-700:#d2cefd;--color-accent-800:#e7e5fe;--color-accent-900:#f5f4ff;
+  --shadow-sm: 0 0 0 1px #cfd3e5; --shadow-md: 0 0 0 1px #b2b6ca, 0 6px 18px rgba(41,43,49,.10);
+}

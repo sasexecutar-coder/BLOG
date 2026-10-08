@@ -1,0 +1,18 @@
+/* HOME-BRAIN-001 · brain-pontos — tokens do cérebro.
+   Só aliases do Nocturne (apps/blog/design-system/nocturne/styles.css). Nenhum valor literal de cor.
+   O JS lê estes nomes via getComputedStyle (resolvidos num elemento-sonda). */
+:root {
+  --brain-accent: var(--color-accent);
+  --brain-bg: var(--color-bg);
+  --brain-dot-peak: var(--color-accent);
+  --brain-dot-ambient: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  --brain-rim: var(--color-accent-700);
+  /* Acréscimos (derivados, documentar em D-006): grade de contornos e halo largo do aro. */
+  --brain-grid: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  --brain-rim-glow: color-mix(in srgb, var(--color-accent-700) 35%, transparent);
+}
+/* Claro: pontos de tinta (sem blending aditivo). O ambiente sobe porque 12% de tinta some no fundo claro. */
+html[data-rc-theme="light"] {
+  --brain-dot-ambient: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  --brain-grid: color-mix(in srgb, var(--color-accent) 26%, transparent);
+}

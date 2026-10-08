@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cérebro — linguagem de pontos (rodada 1)</title>
+<script>if (new URLSearchParams(location.search).get('theme') === 'claro') document.documentElement.dataset.rcTheme = 'light';</script>
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.184.0/build/three.module.js" },
+  "integrity": { "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
+                 "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT" } }
+</script>
+<link rel="stylesheet" href="../../design-system/nocturne/styles.css">
+<link rel="stylesheet" href="brain-theme-light.css">
+<link rel="stylesheet" href="brain-tokens.css">
+<style>
+  html, body { margin: 0; background: var(--brain-bg); }
+  body { min-height: 100dvh; display: grid; align-content: center; }
+  .brain-stage { position: relative; width: 100%; max-width: 720px; margin-inline: auto; overflow: hidden; aspect-ratio: 1 / 0.946; }
+  .brain-stage canvas { display: block; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+  .brain-msg { position: absolute; inset: 0; display: grid; place-items: center; padding: var(--space-6); color: var(--color-neutral-400); font-size: 13px; text-align: center; }
+  .brain-stage[data-ready] .brain-msg { display: none; }
+  .brain-debug { position: fixed; left: var(--space-4); top: var(--space-4); display: grid; gap: var(--space-1); padding: var(--space-3) var(--space-4);
+    background: color-mix(in srgb, var(--color-surface) 92%, transparent); box-shadow: var(--shadow-sm); border-radius: var(--radius-md);
+    color: var(--color-text); font-family: var(--font-body); font-size: 11px; line-height: 1.35; font-variant-numeric: tabular-nums; pointer-events: none; z-index: 2; }
+  .brain-debug[hidden] { display: none; }
+  .brain-debug-row { display: flex; justify-content: space-between; gap: var(--space-6); }
+  .brain-debug-row span { color: var(--color-neutral-400); white-space: pre; }
+  .brain-debug-row b { font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="brain-stage" id="stage"><div class="brain-msg" id="msg">Carregando…</div></div>
+<div class="brain-debug" id="debug" hidden></div>
+<script type="module">
+  import { mountBrain, PARAMS } from './brain-pontos.js';
+  const panel = document.getElementById('debug');
+  if (PARAMS.debug) panel.hidden = false;
+  mountBrain(document.getElementById('stage'), PARAMS.debug ? panel : null).catch((e) => {
+    console.error(e); document.getElementById('msg').textContent = 'Não foi possível carregar o cérebro: ' + e.message;
+  });
+</script>
+</body>
+</html>
