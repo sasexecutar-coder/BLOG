@@ -1,0 +1,11 @@
+{
+  "name": "blog-monorepo",
+  "private": true,
+  "description": "Risco Cognitivo — monorepo do blog (apps/blog) e do cérebro HOME-BRAIN-001",
+  "workspaces": ["apps/*"],
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "assets:check": "npm run assets:check --workspace apps/blog",
+    "assets:build": "npm run assets:build --workspace apps/blog"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-10-06T19:17:47.756Z",
+  "params": {
+    "cellMm": 1.35,
+    "targetExtent": 3.8,
+    "seed": 41005,
+    "smoothIters": 6,
+    "particles": {
+      "cortex": 36000,
+      "cerebellum": 5000,
+      "brainstem": 1000
+    },
+    "particleLift": 0.012
+  },
+  "inputs": {
+    "lh.pial.T1": {
+      "sha256": "2aac780dd856e8be55362cec46663bd0eb14c03d3cac7ac3969f2083a7bf09f8",
+      "verified": true
+    },
+    "rh.pial.T1": {
+      "sha256": "655690359a5cf3c4cd498b31594a22014d7ad4b85620248ae60ed82b25ce3d31",
+      "verified": true
+    },
+    "lh.sulc": {
+      "sha256": "0aad26d4ab724eacdb337321fcf2ecae6ba3b1f2530a65729c55501875d5a9ac",
+      "verified": true
+    },
+    "rh.sulc": {
+      "sha256": "cb83fcb0fd4e7cffef77636819a2faf69fe98c36e38d3d634b45899654c68e83",
+      "verified": true
+    },
+    "aseg.mgz": {
+      "sha256": "d2c386e1aaa05074042b07c8c9c53e999e6172053586562227c97e77a1a41a96",
+      "verified": true
+    }
+  },
+  "freesurfer": {
+    "lh": {
+      "vertices": 153253,
+      "faces": 306502
+    },
+    "rh": {
+      "vertices": 152558,
+      "faces": 305112
+    }
+  },
+  "aseg": {
+    "dims": [
+      256,
+      256,
+      256
+    ],
+    "type": 1,
+    "voxelMm": [
+      0.9000000953674316,
+      0.9000000953674316,
+      0.9000000953674316
+    ],
+    "labels": {
+      "cerebellum": [
+        7,
+        8,
+        46,
+        47
+      ],
+      "brainstem": [
+        16
+      ]
+    }
+  },
+  "meshes": [
+    {
+      "name": "cortex-left",
+      "vertices": 61185,
+      "triangles": 132887,
+      "winding": "kept"
+    },
+    {
+      "name": "cortex-right",
+      "vertices": 60739,
+      "triangles": 132217,
+      "winding": "kept"
+    },
+    {
+      "name": "cerebellum",
+      "vertices": 33369,
+      "triangles": 66736,
+      "winding": "flipped"
+    },
+    {
+      "name": "brain-stem",
+      "vertices": 9200,
+      "triangles": 18396,
+      "winding": "flipped"
+    }
+  ],
+  "transform": {
+    "from": "FreeSurfer surface RAS / TKR (mm); aseg voxels via TKR vox2ras",
+    "axes": "scene.x = A, scene.y = S, scene.z = R (cyclic permutation, det +1)",
+    "centreMm_sceneAxes": [
+      -9.407360076904297,
+      24.77861785888672,
+      0.5291595458984375
+    ],
+    "scale_unitsPerMm": 0.021940127192526693,
+    "mmPerUnit": 45.578587180689766,
+    "extentMm_sceneAxes": [
+      173.1986312866211,
+      128.89129638671875,
+      131.01019287109375
+    ],
+    "targetExtentUnits": 3.8
+  },
+  "glb": {
+    "bytes": 9471892,
+    "sha256": "ce97da58a5d4cdcf55b40d47a25ef55ca677e5e12a9f71e9ad0942cee2860c93"
+  },
+  "particles": {
+    "count": 42000,
+    "bytes": 252000,
+    "sha256": "c6822ba52404024b8c27565030ecffbd994d4cc5f561e7901e479a106354bdc9",
+    "attrBytes": 84000,
+    "attrSha256": "6a64659f1b3419d5784388f840dae162d01a1a8b15ba3fb6d63e4f0ef67ec331"
+  },
+  "ms": 6828
+}

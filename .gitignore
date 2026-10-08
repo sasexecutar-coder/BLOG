@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+.wrangler/
+.react-router/
+pipeline/out/
+.env
+.env.*
+.dev.vars
+__MACOSX/
+.DS_Store
+*.log

@@ -1,0 +1,12 @@
+{
+  "name": "@risco-cognitivo/blog",
+  "private": true,
+  "type": "module",
+  "description": "App do blog Risco Cognitivo — design system Nocturne (SoT) e cérebro HOME-BRAIN-001",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "assets:check": "node pipeline/build.mjs --out pipeline/out --check",
+    "assets:build": "node pipeline/build.mjs --out public/models/home-brain --check",
+    "prototypes": "python3 -m http.server 4173 --directory prototypes"
+  }
+}
