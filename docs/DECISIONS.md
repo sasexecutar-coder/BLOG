@@ -49,7 +49,10 @@ fsaverage (referência) como ponto de partida; o repositório já contém o GLB 
 Registrada no [ADR-002](adr/ADR-002-cerebro-linguagem-unica-de-pontos.md). Os prompts guardados em
 `docs/prompts/claude-design/` pedem `--brain-accent #6E72E8`, fundos `#151414`/`#FFFFFF` e tokens `--brain-*` /
 `--text-primary|secondary`, que não existem no Nocturne e reintroduzem a paleta arquivada. Decidir: criar os tokens do
-cérebro no design system (fonte única) ou mapeá-los para os tokens `--color-*`. Prompts **não editados**.
+cérebro no design system (fonte única) ou mapeá-los para os tokens `--color-*`. Prompts originais **não editados**.
+
+**Proposta (2026-10-08):** versão adaptada em `prompts/claude-design/nocturne/`, com `--brain-*` como aliases de
+`--color-*` e contrastes calculados em `MAPEAMENTO.md`. Aguarda aceite.
 
 ## Divergências encontradas e tratadas
 

@@ -11,6 +11,7 @@
 | `extras/prompt-rodada-1-cena.md` · `extras/prompt-rodada-2-marcadores-callouts.md` | As duas fases separadas, citando as pastas do pacote | idem |
 | `02_BRIEFING-auditoria.md` | Diagnóstico com medidas e critérios de aceite (BR-01…, CD-01…) | idem |
 | `00_LEIA-ME.md` · `FALTA-ADICIONAR/LEIA-ME.txt` | Como usar o pacote e o que faltava anexar | idem |
+| `nocturne/` | **Versão adaptada ao Nocturne** das duas rodadas + `MAPEAMENTO.md` (tokens, contrastes, o que mudou) | adaptação (proposta D-006) |
 | `referencias/` | 3 prints do globo, 3 do cérebro atual e a colagem lado a lado | idem |
 
 Decisão associada: [`../../adr/ADR-002-cerebro-linguagem-unica-de-pontos.md`](../../adr/ADR-002-cerebro-linguagem-unica-de-pontos.md).
