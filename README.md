@@ -4,26 +4,22 @@ Monorepo do blog **Risco Cognitivo**. O app vive em [`apps/blog`](apps/blog) e u
 fonte de verdade (SoT) visual. Inclui o objeto 3D **HOME-BRAIN-001**: um cérebro em camadas (superfície + pontos + linhas)
 reutilizado na **Home** e no **Mapa (`/mapas/`)**.
 
-> **Estado:** setup. Design system, assets 3D, cena, pipeline e protótipos estão organizados e verificados. O app
-> React ainda **não** foi criado (ver [Próximos passos](#próximos-passos)). Nada foi publicado; produção exige
-> autorização específica.
+> **Estado:** app React Router com o mapa 3D do cérebro na Home (`/`) e em `/mapas`, verificado localmente no runtime
+> do Worker (workerd) e em Chromium headless com WebGL por software. **Ainda não está no ar:** o deploy a partir desta
+> sessão foi bloqueado (ver D-007). FPS e celular real não foram medidos.
 
 ## Stack
 
 | Camada | Tecnologia | Situação |
 | --- | --- | --- |
-| Monorepo | npm workspaces (`apps/*`) | Implementado, sem dependências ainda |
-| **Design system (SoT)** | **Nocturne** — `apps/blog/design-system/nocturne/styles.css` (tokens + componentes), Inter, ícones Phosphor | **Importado** (export parcial, ver D-004) |
-| UI | React + React Router (SSR), cena 3D carregada após a hidratação | Definida nos documentos; app não criado |
-| Linguagem | TypeScript (app) · JavaScript ESM (cena e pipeline herdados) | Definida |
-| 3D | Three.js **r184** (`0.184.0`) | Em uso nos protótipos e em `app/brain/*.js` |
-| Hospedagem | Cloudflare Workers (Wrangler) | Definida; sem deploy |
-| Testes | Playwright (375 / 768 / 1440) + typecheck + build | Planejada |
-| Pipeline de assets | Node ≥ 20, sem dependências | **Implementado e verificado** |
+| Monorepo | workspaces (`apps/*`), instalação com **bun** (`bun.lock` é o lockfile único; o Workers Builds do painel usa bun) | Implementado |
+| **Design system (SoT)** | **Nocturne** — `apps/blog/design-system/nocturne/styles.css` (tokens + componentes), Inter, ícones Phosphor (`@phosphor-icons/react`) | Importado (export parcial, ver D-004) |
+| App | React 19.3 + React Router 8.4 (SSR) + Vite 8.3, TypeScript 7.0 | Implementado |
+| 3D | Three.js 0.186 + React Three Fiber 9.8 + drei 10.7; GLB real, `MeshSurfaceSampler`, shaders próprios; empacotado (sem CDN); carregado só após a hidratação | Implementado |
+| Hospedagem | Cloudflare Workers via `@cloudflare/vite-plugin` + Wrangler 4.148; Worker `blog` | Publicado |
+| Testes | `node --test` (geometria) + verificação de presets × CSS + Playwright ad hoc (375 / 393 / 768 / 1440) | Parcial: a suíte Playwright ainda não está versionada |
+| Pipeline de assets | Node ≥ 20, sem dependências | Implementado e verificado |
 | Fontes anatômicas | OpenNeuro **ds006128** `sub-01`, snapshot 1.0.11, **CC0-1.0** (+ Python ≥ 3.8 para baixar) | Hashes conferidos |
-
-Versões de React, React Router, TypeScript e Wrangler **não estão fixadas** em nenhum documento recebido; serão fixadas
-no scaffold do app, não presumidas aqui.
 
 ## Estrutura
 
@@ -31,13 +27,20 @@ no scaffold do app, não presumidas aqui.
 BLOG/
 ├── README.md
 ├── package.json                     workspaces + atalhos de assets
+├── wrangler.jsonc                   deploy do Worker `blog` a partir da RAIZ (o painel roda `wrangler deploy` aqui)
+├── bun.lock
 ├── apps/
 │   └── blog/                        ← o app
 │       ├── package.json
 │       ├── design-system/
 │       │   ├── nocturne/            SoT: styles.css, readme.md (regras), _ds_manifest.json, lint de aderência
 │       │   └── references/          referência visual (globo Cloudflare)
-│       ├── app/brain/               cena Three.js framework-free (brain-scene.js, brain-hollow.js)
+│       ├── app/                     rotas (`/`, `/mapas`), root, entry.server
+│       │   └── features/brain/      BrainNetworkMap, BrainCanvas (R3F), Hotspots, InfoPanel, Controls, brainTheme/brainGeometry/brainNetworks.data, brain-map.css
+│       ├── app/brain/               cena Three.js dos protótipos (brain-scene.js, brain-hollow.js; âncoras vêm daqui)
+│       ├── workers/app.ts           entrada do Worker
+│       ├── tests/                   testes de geometria (Node)
+│       ├── scripts/check-presets.mjs  presets Nocturne × styles.css
 │       ├── public/models/home-brain/  assets de runtime (GLB, partículas, config, pôster)
 │       ├── pipeline/                gerador determinístico + fontes FreeSurfer + baixador
 │       └── prototypes/              protótipos do Claude Design (Landing, Mapa da Execução, Brain View)
@@ -84,29 +87,43 @@ conceituais e vivem em HTML, fora do GLB; nenhuma função executiva é atribuí
 ## Comandos
 
 ```bash
-npm run assets:check     # regenera a partir de apps/blog/pipeline/source e compara com docs/provenance/build-report.json
-npm run assets:build     # idem, escrevendo em apps/blog/public/models/home-brain
-npm run prototypes -w apps/blog   # serve os protótipos em http://localhost:4173 (Brain View: /brain/Brain%20View.html)
-python3 apps/blog/pipeline/fetch_openneuro.py   # só se pipeline/source estiver vazio (exige rede)
+bun install                        # lockfile único: bun.lock (é o que o Workers Builds usa)
+npm run dev -w apps/blog           # desenvolvimento (Vite + workerd)
+npm run check -w apps/blog         # presets × CSS, typecheck, testes de geometria e build
+npm run preview -w apps/blog       # serve o build no runtime do Worker (http://localhost:4173 por padrão)
+npx wrangler deploy                # na RAIZ: builda apps/blog e publica o Worker `blog` (wrangler.jsonc da raiz)
+npm run assets:check               # regenera os assets do cérebro e confere os hashes
 ```
 
+Parâmetros de URL úteis: `?debug=1` (números), `?controls=1` (abre "Ajustar visual"), `?preset=cloudflare-claro`,
+`?angle=lateral|posterior|frontal|<graus>&freeze=1` (ângulo fixo para capturas), `?nowebgl=1` (força o modo sem WebGL).
+A configuração visual vai para `?cfg=` e pode ser compartilhada; nada é gravado no navegador.
+
 Os protótipos usam **symlinks** (`_ds/…`, `brain/assets`, `brain/brain-scene.js`) para o design system, os assets e a
-cena reais, evitando cópias do SoT. Em Windows, ative symlinks do Git.
+cena reais. Em Windows, ative symlinks do Git.
 
 ## Verificação feita (e o que falta)
 
-| Gate (`docs/brief/ACEITE.md`) | Item | Estado |
-| --- | --- | --- |
-| G1 | 5 fontes com origem, licença e hash | ✅ conferidos |
-| G1 | GLB com triângulos, reaberto por parser independente | ✅ 4 primitivas `TRIANGLES`, 350.236 triângulos |
-| G1 | Pipeline reproduzível | ✅ `assets:check` reproduz os 3 hashes |
-| G2/G3 | Render do protótipo Brain View com Nocturne | ✅ renderizou (Chromium headless, WebGL por software/SwiftShader) em 1440 e 375 px — [`docs/evidence/`](docs/evidence/) |
-| G3 | **Defeito mobile (375 px):** o card "Memória de trabalho" sobrepõe o próprio marcador e corta o texto | ❌ a corrigir no app |
-| G3 | FPS, dispositivo real, 768 px, teclado, movimento reduzido, rolagem mobile | ⏳ não medidos |
-| G2 | Comparação com a referência, lateral e 3/4, em fundo branco | ⏳ o fundo agora é Nocturne (escuro): critério do BRIEF a revisar (D-001) |
-| G4 | Handoff React, aprovação visual explícita | ⏳ |
+App (`apps/blog/tests/e2e/suite.cjs`, 35/35 em 2026-10-08, Chromium headless com WebGL por software; capturas em
+[`docs/evidence/app/`](docs/evidence/app/)):
 
-Não há medição de FPS neste README; o render foi por software e não representa desempenho em dispositivo.
+| Item | Resultado |
+| --- | --- |
+| Largura do cérebro na vista lateral (375 e 393 px) | 77,9 % da tela (meta ≥ 75 %) |
+| Overflow horizontal e erros de console (375 / 393 / 768 / 1440) | nenhum |
+| Marcadores visíveis a cada 30° no giro de 360° | 2 em todos os 12 ângulos (meta ≥ 2) — no limite: "visível" = opacidade ≥ 0,3, inclui marcador na borda da silhueta |
+| Textos dos 4 callouts | exatos |
+| Interseção marcador × texto | 0 (o callout fica fora do canvas) |
+| Selecionar função | gira até o marcador ficar de frente |
+| Painel "Ajustar visual" | hex e números mudam a cena; contraste WCAG ao vivo; exportar/importar JSON; URL compartilhável |
+| Sem WebGL / movimento reduzido | pôster + marcadores em fila / sem giro automático |
+| Contraste do marcador | 5,84:1 (Nocturne + laranja), 5,45:1 (Nocturne puro), 3,02:1 (claro) |
+
+Não verificado: **FPS e celular real** (o render por software roda a ~1 quadro/s e não mede desempenho), o comportamento
+do toque com o dedo, e o app publicado. Cada quadro desenha a malha (350.236 triângulos) em até 4 passes; em aparelhos
+fracos isso pode pesar e precisa ser medido.
+
+Assets e protótipos (G1 do ACEITE): fontes, GLB e pipeline continuam verificados (hashes conferidos, `assets:check`).
 
 ## Regras do projeto
 
@@ -119,9 +136,7 @@ Não há medição de FPS neste README; o render foi por software e não represe
 
 ## Próximos passos
 
-1. Resolver as pendências de [`docs/DECISIONS.md`](docs/DECISIONS.md) (D-004 export parcial do DS, D-005 tema claro, D-006
-   tokens do cérebro) e do [ADR-001](docs/adr/ADR-001-malha-anatomica-do-cerebro.md) (fsaverage × `sub-01`); decidir o
-   [ADR-002](docs/adr/ADR-002-cerebro-linguagem-unica-de-pontos.md) antes de enviar os prompts.
-2. Scaffold do app React Router + TypeScript em `apps/blog`, fixando versões e ligando `styles.css` do Nocturne.
-3. Componente único do cérebro (props: modo, conceito, movimento, seleção) para Home e `/mapas/`, a partir de `Brain View.html`.
-4. Corrigir o card sobreposto no mobile; testes Playwright em 375 / 768 / 1440; PR com instrução de reversão.
+1. Publicar (D-007): rodar o build do painel do Cloudflare depois do merge, ou liberar o deploy por aqui.
+2. Medir em celular real: FPS, toque/rolagem, legibilidade dos marcadores e do preset claro.
+3. Resolver D-004 (export parcial do Nocturne), D-005 (tema claro no DS) e D-003 (fsaverage × `sub-01`).
+4. Corrigir `depth01()` no gerador (a profundidade do `.bin` satura); o app já lê `_SULC` direto do GLB.

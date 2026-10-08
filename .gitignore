@@ -3,10 +3,14 @@ dist/
 build/
 .wrangler/
 .react-router/
-pipeline/out/
+**/pipeline/out/
 .env
 .env.*
 .dev.vars
 __MACOSX/
 .DS_Store
 *.log
+
+# lockfile único: bun (o Workers Builds do painel instala com bun)
+package-lock.json
+worker-configuration.d.ts
