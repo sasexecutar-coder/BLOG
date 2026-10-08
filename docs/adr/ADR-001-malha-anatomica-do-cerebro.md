@@ -38,7 +38,7 @@ específica. O FreeSurfer reconstrói a pial seguindo o limite externo do córte
 
 Esta ADR diverge do que o repositório já contém, e a divergência fica registrada em vez de resolvida em silêncio:
 
-- Já existe `public/models/home-brain/brain-surface.glb` (4 malhas triangulares, 343.236 triângulos), gerado pelo caminho
+- Já existe `apps/blog/public/models/home-brain/brain-surface.glb` (4 malhas triangulares, 350.236 triângulos), gerado pelo caminho
   **individual**: OpenNeuro ds006128 `sub-01` → FreeSurfer (`lh/rh.pial.T1`) → GLB, com cerebelo e tronco extraídos de
   `aseg.mgz`. Isso é o segundo caminho da tabela, não o fsaverage.
 - A ADR fala em `brain.glb` "ainda não baixado nem convertido": para o **fsaverage** isso é verdade; nenhum arquivo
@@ -57,7 +57,7 @@ Esta ADR diverge do que o repositório já contém, e a divergência fica regist
 ## Evidência de insumos (caminho individual)
 
 O `source.zip` recebido em 2026-10-07 contém os cinco arquivos originais do caminho **OpenNeuro T1w → FreeSurfer → GLB**
-(ds006128 `sub-01`, snapshot 1.0.11, CC0-1.0). São **byte a byte idênticos** aos já versionados em `pipeline/source/`
+(ds006128 `sub-01`, snapshot 1.0.11, CC0-1.0). São **byte a byte idênticos** aos já versionados em `apps/blog/pipeline/source/`
 (comparados com `cmp`), então não foram duplicados no repositório.
 
 | Arquivo | Papel | Bytes | SHA-256 |

@@ -1,9 +1,9 @@
 // Executa build-brain-assets.js em Node (>= 20) fora do harness do Claude Design.
 // O gerador espera readFileBinary / saveFile / log como globais da função assíncrona.
 //
-//   node pipeline/build.mjs [--out <dir>] [--check]
+//   node apps/blog/pipeline/build.mjs [--out <dir>] [--check]
 //
-// --out    destino dos assets (padrão: pipeline/out)
+// --out    destino dos assets (padrão: apps/blog/pipeline/out)
 // --check  compara GLB, partículas e atributos com docs/provenance/build-report.json
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -33,7 +33,7 @@ await run(
 );
 
 if (check) {
-  const report = JSON.parse(await readFile(join(here, "..", "docs/provenance/build-report.json"), "utf8"));
+  const report = JSON.parse(await readFile(join(here, "..", "..", "..", "docs/provenance/build-report.json"), "utf8"));
   const expected = {
     "brain-surface.glb": report.glb.sha256,
     "brain-particles.bin": report.particles.sha256,

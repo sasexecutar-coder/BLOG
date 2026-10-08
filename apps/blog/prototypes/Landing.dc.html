@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-02c4ffae-3abc-4626-b190-1a7caf3c77c7/styles.css">
+<script src="_ds/nocturne-02c4ffae-3abc-4626-b190-1a7caf3c77c7/_ds_bundle.js"></script>
+<style>
+html,body{margin:0;background:#161826}
+a{color:var(--color-accent-300)}a:hover{color:var(--color-accent-200)}
+[data-rc-theme="light"]{--color-bg:#f3f5fe;--color-surface:#fafbff;--color-text:#292b31;--color-accent:#796cbf;--color-divider:color-mix(in srgb,#292b31 14%,transparent);--color-neutral-100:#292b31;--color-neutral-200:#3f424d;--color-neutral-300:#595d6c;--color-neutral-400:#75798c;--color-neutral-500:#75798c;--color-neutral-600:#9397ab;--color-neutral-700:#b2b6ca;--color-neutral-800:#cfd3e5;--color-neutral-900:#e4e7f5;--color-accent-100:#2b2741;--color-accent-200:#423a6a;--color-accent-300:#5d5294;--color-accent-400:#796cbf;--color-accent-500:#968ae0;--color-accent-600:#b5abfc;--color-accent-700:#d2cefd;--color-accent-800:#e7e5fe;--color-accent-900:#f5f4ff;--shadow-sm:0 0 0 1px #cfd3e5;--shadow-md:0 0 0 1px #b2b6ca,0 6px 18px rgba(41,43,49,.10);--shadow-lg:0 0 0 1px #9397ab,0 16px 40px rgba(41,43,49,.16);color-scheme:light}
+[data-rc-theme="dark"]{color-scheme:dark}
+@keyframes rcin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" data-rc-theme="{{ theme }}" style="min-height:100vh;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);transition:background .25s,color .25s">
+
+  <header data-screen-label="Header" style="position:sticky;top:0;z-index:20;background:color-mix(in srgb, var(--color-bg) 86%, transparent);backdrop-filter:blur(10px)">
+    <div style="max-width:1200px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:var(--space-8)">
+      <a href="#topo" style="display:flex;align-items:center;gap:10px;color:var(--color-text);text-decoration:none;flex:none">
+        <svg width="28" height="28" viewBox="0 0 40 40" fill="none" stroke="var(--color-accent)" stroke-width="2.4" stroke-linecap="round"><path d="M20 6v28M20 9c-2-3-7-3-8.5 0-3.5 0-5.5 3.5-4 6.5-3 2-3 6.5 0 8.5-1.5 3 1 6.5 4.5 6.5 1.5 3 6 3.5 8 .5M20 9c2-3 7-3 8.5 0 3.5 0 5.5 3.5 4 6.5 3 2 3 6.5 0 8.5 1.5 3-1 6.5-4.5 6.5-1.5 3-6 3.5-8 .5"></path></svg>
+        <span style="font-size:16px;font-weight:500;letter-spacing:-0.01em">Risco Cognitivo</span>
+      </a>
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;gap:var(--space-8);font-size:14px;flex:1">
+          <a href="#risco" style="color:var(--color-neutral-300);text-decoration:none" style-hover="color:var(--color-text)">O que é</a>
+          <a href="#metodo" style="color:var(--color-neutral-300);text-decoration:none" style-hover="color:var(--color-text)">Método</a>
+          <a href="#casos" style="color:var(--color-neutral-300);text-decoration:none" style-hover="color:var(--color-text)">Casos</a>
+          <a href="Mapa%20da%20Execucao.dc.html" style="color:var(--color-neutral-300);text-decoration:none" style-hover="color:var(--color-text)">Mapas</a>
+        </nav>
+      </sc-if>
+      <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}"><div style="flex:1"></div></sc-if>
+      <button class="btn btn-secondary btn-icon" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" title="{{ themeLabel }}">
+        <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="3"></circle><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"></path></svg></sc-if>
+        <sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1Z"></path></svg></sc-if>
+      </button>
+      <a class="btn btn-primary" href="Mapa%20da%20Execucao.dc.html" style="flex:none">Explorar o mapa</a>
+    </div>
+  </header>
+
+  <section id="topo" data-screen-label="01 Hero" style="max-width:1200px;margin:0 auto;padding:clamp(48px,9vw,112px) 24px clamp(40px,6vw,72px);display:flex;flex-direction:column;gap:22px;align-items:flex-start">
+    <a href="#metodo" class="tag tag-outline" style="text-decoration:none;gap:8px;padding:5px 12px;font-size:12px">Gestão e Controle de Riscos Cognitivos
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+    </a>
+    <h1 style="font-size:clamp(36px,6.2vw,72px);line-height:1.04;letter-spacing:-0.03em;margin:0;max-width:16ch;text-wrap:balance">Você sabe o que precisa fazer, mas nem sempre consegue transformar intenção em <span style="color:var(--color-accent-300)">execução?</span></h1>
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:58ch;font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--color-neutral-300)">
+      <p style="margin:0;text-wrap:pretty">O tempo escapa. As prioridades se acumulam. Uma tarefa simples vira várias. Você começa, interrompe, retoma e perde o ponto em que estava.</p>
+      <p style="margin:0;text-wrap:pretty">Para algumas pessoas, essas dificuldades podem estar relacionadas às demandas de planejar, organizar, iniciar, lembrar, controlar distrações e adaptar um plano.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px">
+      <a class="btn btn-primary" href="Mapa%20da%20Execucao.dc.html" style="padding:10px 18px;font-size:15px;gap:8px">Explorar o mapa
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+      </a>
+      <a class="btn btn-secondary" href="#risco" style="padding:10px 18px;font-size:15px">O que é um risco cognitivo?</a>
+    </div>
+  </section>
+
+  <section data-screen-label="02 Cérebro" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(56px,8vw,96px)">
+    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:stretch">
+      <div style="flex:999 1 560px;min-width:0;position:relative;height:clamp(380px,48vw,560px);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);background:radial-gradient(ellipse 70% 60% at 45% 45%, var(--color-surface), var(--color-bg) 85%)">
+        <iframe ref="{{ brainRef }}" src="brain/Brain%20View.html" title="Cérebro 3D interativo" onLoad="{{ onBrainLoad }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent"></iframe>
+      </div>
+      <aside style="flex:1 0 300px;min-width:0;display:flex;flex-direction:column;gap:14px;padding:22px;border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm)">
+        <div>
+          <h2 style="font-size:28px;margin:0 0 6px">Entenda sua execução.</h2>
+          <p style="margin:0;font-size:14px;color:var(--color-neutral-400);text-wrap:pretty">Explore as relações entre funções executivas, demandas e estratégias.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <sc-for list="{{ fx }}" as="f" hint-placeholder-count="4">
+            <button onClick="{{ f.pick }}" aria-pressed="{{ f.sel }}" style="display:flex;align-items:center;gap:12px;text-align:left;padding:10px 12px;border:0;border-radius:var(--radius-md);background:{{ f.bg }};box-shadow:{{ f.ring }};color:inherit;font:inherit;cursor:pointer" style-hover="background:color-mix(in srgb, var(--color-accent) 12%, transparent)">
+              <span style="width:14px;height:14px;border-radius:50%;background:var(--color-accent-700);box-shadow:0 0 0 1.5px var(--color-accent-400);flex:none"></span>
+              <span style="display:flex;flex-direction:column;flex:1;min-width:0">
+                <span style="font-size:14px;font-weight:500">{{ f.name }}</span>
+                <span style="font-size:12px;color:var(--color-neutral-400)">{{ f.summary }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+        <a class="btn btn-primary" href="{{ mapHref }}" style="align-self:flex-start;gap:8px">{{ mapCta }}
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+        </a>
+        <p style="margin:auto 0 0;font-size:12px;color:var(--color-neutral-500)">Os marcadores indicam acessos a redes distribuídas, não regiões clínicas exatas.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section data-screen-label="03 Contexto" style="background:radial-gradient(ellipse 80% 120% at 20% 0%, var(--color-section-glow), var(--color-section) 70%);color:#e9e9ed">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px;display:flex;flex-direction:column;gap:32px">
+      <span style="width:40px;height:2px;background:#d2cefd"></span>
+      <h2 style="font-size:clamp(28px,4.2vw,48px);line-height:1.08;margin:0;max-width:22ch;text-wrap:balance;color:#f3f5fe">Milhões de pessoas convivem com condições associadas a diferenças no funcionamento executivo</h2>
+      <p style="margin:0;max-width:56ch;font-size:clamp(16px,1.5vw,18px);color:#cfd3e5;text-wrap:pretty">Isso não significa que todas as pessoas tenham os mesmos déficits — nem que uma condição determine como alguém irá funcionar.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px">
+        <div style="display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:var(--radius-lg);box-shadow:inset 0 0 0 1px #4c5397;background:color-mix(in srgb, #161826 22%, transparent)">
+          <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#d2cefd">Brasil</span>
+          <span style="font-size:clamp(40px,5vw,60px);font-weight:500;line-height:1;letter-spacing:-0.03em;color:#f3f5fe">2,4 milhões</span>
+          <span style="font-size:15px;color:#cfd3e5;text-wrap:pretty">de pessoas declararam diagnóstico de autismo no Censo 2022 — 1,2% da população.</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:var(--radius-lg);box-shadow:inset 0 0 0 1px #4c5397;background:color-mix(in srgb, #161826 22%, transparent)">
+          <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#d2cefd">Mundo</span>
+          <span style="font-size:clamp(40px,5vw,60px);font-weight:500;line-height:1;letter-spacing:-0.03em;color:#f3f5fe">366 milhões</span>
+          <span style="font-size:15px;color:#cfd3e5;text-wrap:pretty">de adultos com TDAH sintomático em 2020, segundo uma meta-análise internacional.</span>
+        </div>
+      </div>
+      <p style="margin:0;max-width:64ch;font-size:15px;color:#cfd3e5;text-wrap:pretty">Para milhões de pessoas, pode ser útil compreender como memória de trabalho, controle inibitório, planejamento, flexibilidade e autorregulação interagem com as exigências da vida real.</p>
+    </div>
+  </section>
+
+  <section data-screen-label="04 Planejamento" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px;display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,64px);align-items:flex-start">
+    <div style="flex:1 1 360px;display:flex;flex-direction:column;gap:16px;min-width:0">
+      <h2 style="font-size:clamp(28px,4vw,44px);line-height:1.08;margin:0;text-wrap:balance">Seu planejamento pode estar correto — e <span style="color:var(--color-accent-300)">ainda assim existir um risco na execução</span></h2>
+      <p style="margin:0;font-size:17px;color:var(--color-neutral-300);text-wrap:pretty">Além de perguntar o que fazer e quando fazer, vale perguntar: quais capacidades cognitivas esse plano exige de mim para realmente funcionar?</p>
+      <div style="display:flex;gap:12px;align-items:center;margin-top:8px;padding:14px 16px;border-radius:var(--radius-md);background:var(--color-accent-900);box-shadow:inset 0 0 0 1px var(--color-accent-800)">
+        <span style="width:3px;align-self:stretch;border-radius:2px;background:var(--color-accent)"></span>
+        <span style="font-size:15px;font-weight:500;color:var(--color-accent-200)">É aqui que a gestão de riscos encontra as funções executivas.</span>
+      </div>
+    </div>
+    <div style="flex:1 1 420px;min-width:0;padding:6px 18px 10px;border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm)">
+      <table class="table" style="font-size:15px">
+        <thead><tr><th>Para executar</th><th>Pode exigir</th></tr></thead>
+        <tbody>
+          <sc-for list="{{ demands }}" as="r" hint-placeholder-count="8">
+            <tr><td style="font-weight:500;padding:11px 8px">{{ r.a }}</td><td style="color:var(--color-neutral-300);padding:11px 8px">{{ r.b }}</td></tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="risco" data-screen-label="05 Risco cognitivo" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(56px,8vw,96px);display:flex;flex-direction:column;gap:24px">
+    <h2 style="font-size:clamp(32px,5vw,56px);line-height:1.04;margin:0;letter-spacing:-0.025em">O que é um <span style="color:var(--color-accent-300)">risco cognitivo?</span></h2>
+    <p style="margin:0;max-width:56ch;font-size:clamp(16px,1.6vw,19px);color:var(--color-neutral-300);text-wrap:pretty">Um risco cognitivo aparece quando aquilo que uma tarefa exige encontra um ponto de vulnerabilidade e aumenta a chance de alguma coisa dar errado.</p>
+    <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="2">
+      <div style="display:flex;flex-direction:column;gap:12px;padding:20px;border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm)">
+        <span style="font-size:15px;font-weight:500;color:var(--color-accent-300)">{{ ex.title }}</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+          <sc-for list="{{ ex.steps }}" as="s" hint-placeholder-count="5">
+            <span style="display:flex;align-items:center;gap:8px">
+              <sc-if value="{{ s.arrow }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></sc-if>
+              <span style="padding:10px 14px;border-radius:var(--radius-md);font-size:14px;background:{{ s.bg }};box-shadow:{{ s.ring }};color:{{ s.col }}">{{ s.t }}</span>
+            </span>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+    <p style="margin:4px 0 0;font-size:18px;color:var(--color-neutral-300)">Isso é o que chamamos, neste método, de <strong style="font-weight:500;color:var(--color-text)">risco cognitivo</strong>.</p>
+  </section>
+
+  <section id="metodo" data-screen-label="06 Método" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(56px,8vw,96px);display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:60ch">
+      <h2 style="font-size:clamp(28px,4vw,44px);line-height:1.08;margin:0">Gestão e Controle de <span style="color:var(--color-accent-300)">Riscos Cognitivos</span></h2>
+      <p style="margin:0;font-size:17px;color:var(--color-neutral-300);text-wrap:pretty">A proposta é simples: não esperar a dificuldade acontecer para só então tentar corrigi-la.</p>
+    </div>
+    <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="6">
+        <li style="display:flex;gap:14px;padding:18px;border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm)">
+          <span style="width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:500;color:var(--color-accent-200);box-shadow:inset 0 0 0 1px var(--color-accent-600)">{{ s.n }}</span>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:16px;font-weight:500;text-wrap:pretty">{{ s.t }}</span>
+            <span style="font-size:14px;color:var(--color-neutral-400);text-wrap:pretty">{{ s.d }}</span>
+          </div>
+        </li>
+      </sc-for>
+    </ol>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:20px;border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm)">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+        <sc-for list="{{ chain }}" as="s" hint-placeholder-count="8">
+          <span style="display:flex;align-items:center;gap:8px">
+            <sc-if value="{{ s.arrow }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></sc-if>
+            <span style="padding:10px 14px;border-radius:var(--radius-md);font-size:14px;background:{{ s.bg }};box-shadow:{{ s.ring }};color:{{ s.col }}">{{ s.t }}</span>
+          </span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="casos" data-screen-label="07 Casos" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(56px,8vw,96px);display:flex;flex-direction:column;gap:24px">
+    <h2 style="font-size:clamp(28px,4vw,44px);line-height:1.08;margin:0;max-width:20ch">Transforme dificuldades abstratas em <span style="color:var(--color-accent-300)">problemas concretos</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px;align-items:start">
+      <sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;gap:4px;padding:20px;border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm)">
+          <span style="font-size:19px;font-weight:500;margin-bottom:8px;text-wrap:pretty">{{ c.q }}</span>
+          <sc-for list="{{ c.rows }}" as="r" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;padding:9px 0;border-top:1px solid var(--color-divider);font-size:14px">
+              <span style="color:var(--color-accent-300);font-weight:500">{{ r.k }}</span>
+              <sc-if value="{{ r.plain }}"><span style="color:var(--color-neutral-200);text-wrap:pretty">{{ r.v }}</span></sc-if>
+              <sc-if value="{{ r.isChain }}">
+                <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px">
+                    <sc-for list="{{ r.steps }}" as="s" hint-placeholder-count="5">
+                      <span style="display:flex;align-items:center;gap:6px">
+                        <sc-if value="{{ s.arrow }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></sc-if>
+                        <span style="padding:6px 10px;border-radius:var(--radius-md);font-size:13px;background:color-mix(in srgb, var(--color-text) 4%, transparent);box-shadow:{{ s.ring }};color:var(--color-text)">{{ s.t }}</span>
+                      </span>
+                    </sc-for>
+                  </div>
+                  <span style="color:var(--color-neutral-200);text-wrap:pretty">{{ r.note }}</span>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="08 Externalização" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(56px,8vw,96px);display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,64px);align-items:flex-start">
+    <div style="flex:1 1 360px;display:flex;flex-direction:column;gap:16px;min-width:0">
+      <h2 style="font-size:clamp(32px,5vw,56px);line-height:1.04;margin:0;letter-spacing:-0.025em">Não dependa apenas da sua cabeça</h2>
+      <p style="margin:0;font-size:17px;color:var(--color-neutral-300);text-wrap:pretty">Uma das estratégias investigadas por este projeto é a externalização cognitiva: transferir informações importantes para sistemas externos.</p>
+      <p style="margin:0;font-size:15px;color:var(--color-neutral-200);text-wrap:pretty">Calendários, listas, lembretes, agendas visuais e sistemas únicos de tarefas são exemplos de apoio externo.</p>
+      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--color-neutral-500);margin-top:4px">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" style="flex:none;margin-top:2px"><circle cx="8" cy="8" r="6.5"></circle><path d="M8 7v4M8 5v.01" stroke-linecap="round"></path></svg>
+        <span style="text-wrap:pretty">Externalizar intenções pode apoiar a memória prospectiva, embora o benefício dependa da tarefa e não substitua necessariamente aprendizagem ou memória interna.</span>
+      </div>
+    </div>
+    <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:12px;padding:20px;border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm)">
+      <span style="font-size:15px;font-weight:500;color:var(--color-accent-300)">Você não precisa manter apenas na memória:</span>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+        <sc-for list="{{ ext }}" as="e" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:var(--radius-md);background:color-mix(in srgb, var(--color-text) 4%, transparent);font-size:15px">
+            <span style="width:9px;height:9px;transform:rotate(45deg);border-radius:2px;background:var(--color-accent-300);flex:none;margin:0 2px"></span>{{ e }}
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="09 CTA" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(64px,9vw,112px)">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px;padding:clamp(24px,4vw,40px);border-radius:var(--radius-lg);background:radial-gradient(ellipse 60% 120% at 0% 0%, var(--color-accent-900), var(--color-surface) 70%);box-shadow:var(--shadow-sm)">
+      <div style="flex:1 1 360px;display:flex;flex-direction:column;gap:8px">
+        <h2 style="font-size:clamp(24px,3vw,34px);margin:0">Entenda sua execução.</h2>
+        <p style="margin:0;font-size:15px;color:var(--color-neutral-400)">Explore as relações entre funções executivas, demandas e estratégias.</p>
+      </div>
+      <a class="btn btn-primary" href="Mapa%20da%20Execucao.dc.html" style="padding:12px 20px;font-size:15px;gap:8px">Explorar o mapa
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+      </a>
+    </div>
+    <p style="margin:20px 0 0;font-size:12px;color:var(--color-neutral-500)">Conteúdo educativo. Não é avaliação clínica.</p>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Escuro&quot;,&quot;Claro&quot;],&quot;default&quot;:&quot;Escuro&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Aparência&quot;}}">
+const FX = [
+  { id: 'FE-07', name: 'Planejamento', summary: 'Organizar possibilidades e passos para um objetivo.' },
+  { id: 'MA-02', name: 'Memória de trabalho', summary: 'Manter e manipular informação ativa.' },
+  { id: 'MA-01', name: 'Inibição', summary: 'Conter respostas automáticas e interferências.' },
+  { id: 'MA-03', name: 'Flexibilidade cognitiva', summary: 'Mudar regra ou perspectiva conforme a situação.' }
+];
+const DEMANDS = [['Começar','iniciação e autorregulação'],['Organizar','planejamento e memória de trabalho'],['Priorizar','raciocínio e controle executivo'],['Manter o foco','controle inibitório'],['Lembrar etapas','memória de trabalho'],['Perceber erros','metacognição'],['Mudar o plano','flexibilidade cognitiva'],['Continuar diante da dificuldade','autocontrole e persistência']];
+const EXAMPLES = [
+  ['Exemplo 1: quando a memória é sobrecarregada', ['Lembrar várias etapas','Memória de trabalho','Sobrecarga','Etapa esquecida','Erro, atraso ou retrabalho']],
+  ['Exemplo 2: quando há muitas distrações', ['Estímulos concorrentes','Controle inibitório','Interrupções vencem a prioridade','Mudança repetida de atividade','Trabalho demora mais ou permanece incompleto']]
+];
+const STEPS = [
+  ['O que você precisa realizar','Qual é o objetivo?'],
+  ['O que essa atividade exige cognitivamente','Planejamento? Memória? Inibição? Flexibilidade? Monitoramento?'],
+  ['Onde existe maior vulnerabilidade','Em quais situações você costuma perder tempo, esquecer, abandonar, interromper ou se sobrecarregar?'],
+  ['Qual é o risco operacional','O que pode acontecer com o objetivo?'],
+  ['O que pode ser feito antes','Que estratégia, ferramenta ou modificação reduz essa demanda?'],
+  ['O resultado','A estratégia realmente diminuiu erros, atrasos, interrupções ou sobrecarga?']
+];
+const CHAIN = ['Dor','Demanda','Função executiva','Vulnerabilidade','Risco','Estratégia','Controle','Progresso'];
+const CASES = [
+  ['“Minha vida é uma bagunça”', [['Situação:','organização diária.'],['O que acontece:','tarefas deixam de ser registradas ou priorizadas.'],['Exigência:','planejamento, memória de trabalho e monitoramento.'],['Risco:','esquecimento, sobrecarga e perda de prazo.'],['Estratégia:','externalização cognitiva, checklist, agenda visual ou sistema único de tarefas.']]],
+  ['“O tempo simplesmente escapa”', [['Dor:','perda da percepção do andamento da atividade.'],['Demanda:','monitoramento temporal.'],['Risco:','permanecer tempo excessivo em uma tarefa.'],['Impacto:','atrasar as tarefas seguintes.'],['Estratégia:','marcos, temporizadores e checkpoints.']]],
+  ['“Tenho vários objetivos, mas abandono quando fica difícil”', [['Investigue:', { chain: ['demanda','função','gatilho','comportamento','consequência'], note: 'Só então escolha uma intervenção.' }]]]
+];
+const EXT = ['Prazos','Próximas ações','Prioridades','Decisões','Horários','Estado do trabalho'];
+
+class Component extends DCLogic {
+  state = { theme: null, sel: null, wide: true };
+  rootRef = React.createRef(); brainRef = React.createRef();
+  theme() { return this.state.theme || ((this.props.theme ?? 'Escuro') === 'Claro' ? 'light' : 'dark'); }
+  postBrain(msg) { const fr = this.brainRef.current; if (fr && fr.contentWindow) fr.contentWindow.postMessage(msg, '*'); }
+  componentDidMount() {
+    try { const t = localStorage.getItem('rc-map-theme'); if (t === 'light' || t === 'dark') this.setState({ theme: t }); } catch (e) {}
+    this.onMsg = e => { const d = e.data || {}; if (d.type === 'rc-select' && FX.some(f => f.id === d.id)) this.setState({ sel: d.id }); };
+    window.addEventListener('message', this.onMsg);
+    if (this.rootRef.current) { this.ro = new ResizeObserver(([en]) => { const wide = en.contentRect.width >= 760; if (wide !== this.state.wide) this.setState({ wide }); }); this.ro.observe(this.rootRef.current); }
+  }
+  componentDidUpdate(pp, ps) { if (ps.theme !== this.state.theme) this.postBrain({ type: 'rc-theme', theme: this.theme() }); }
+  componentWillUnmount() { window.removeEventListener('message', this.onMsg); if (this.ro) this.ro.disconnect(); }
+  renderVals() {
+    const st = this.state, theme = this.theme();
+    const selF = FX.find(f => f.id === st.sel);
+    return {
+      rootRef: this.rootRef, brainRef: this.brainRef, theme, isDark: theme === 'dark', isLight: theme === 'light',
+      themeLabel: theme === 'dark' ? 'Mudar para modo claro' : 'Mudar para modo escuro',
+      toggleTheme: () => { const t = theme === 'dark' ? 'light' : 'dark'; this.setState({ theme: t }); try { localStorage.setItem('rc-map-theme', t); } catch (e) {} },
+      wide: st.wide, narrow: !st.wide,
+      onBrainLoad: () => { this.postBrain({ type: 'rc-theme', theme }); if (st.sel) this.postBrain({ type: 'rc-focus', id: st.sel }); },
+      fx: FX.map(f => ({ ...f, sel: st.sel === f.id, bg: st.sel === f.id ? 'var(--color-accent-900)' : 'color-mix(in srgb, var(--color-text) 4%, transparent)',
+        ring: st.sel === f.id ? 'inset 0 0 0 1px var(--color-accent)' : 'none',
+        pick: () => { this.setState({ sel: f.id }); this.postBrain({ type: 'rc-focus', id: f.id }); } })),
+      mapHref: 'Mapa%20da%20Execucao.dc.html' + (st.sel ? '#n=' + st.sel : ''),
+      mapCta: selF ? 'Explorar ' + selF.name.toLowerCase() + ' no mapa' : 'Explorar no mapa',
+      demands: DEMANDS.map(([a, b]) => ({ a, b })),
+      examples: EXAMPLES.map(([title, s]) => ({ title, steps: s.map((t, i) => {
+        const last = i === s.length - 1, fn = i === 1;
+        return { t, arrow: i > 0, bg: last ? 'var(--color-accent-900)' : 'color-mix(in srgb, var(--color-text) 4%, transparent)',
+          ring: fn ? 'inset 0 0 0 1px var(--color-accent-600)' : last ? 'inset 0 0 0 1px var(--color-accent-800)' : 'none',
+          col: last ? 'var(--color-accent-200)' : 'var(--color-text)' };
+      }) })),
+      steps: STEPS.map(([t, d], i) => ({ n: i + 1, t, d })),
+      chain: CHAIN.map((t, i) => {
+        const fn = t === 'Função executiva', last = i === CHAIN.length - 1;
+        return { t, arrow: i > 0, bg: last ? 'var(--color-accent-900)' : 'color-mix(in srgb, var(--color-text) 4%, transparent)',
+          ring: fn ? 'inset 0 0 0 1px var(--color-accent-600)' : last ? 'inset 0 0 0 1px var(--color-accent-800)' : 'none',
+          col: last ? 'var(--color-accent-200)' : 'var(--color-text)' };
+      }),
+      cases: CASES.map(([q, rows]) => ({ q, rows: rows.map(([k, v]) => typeof v === 'string'
+        ? { k: k.replace(':', ''), v, plain: true, isChain: false }
+        : { k: k.replace(':', ''), plain: false, isChain: true, note: v.note,
+            steps: v.chain.map((t, i) => ({ t, arrow: i > 0, ring: i === v.chain.length - 1 ? 'inset 0 0 0 1px var(--color-accent-800)' : 'none' })) }) })),
+      ext: EXT
+    };
+  }
+}
+</script>
+</body>
+</html>

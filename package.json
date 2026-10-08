@@ -1,11 +1,11 @@
 {
-  "name": "blog",
+  "name": "blog-monorepo",
   "private": true,
-  "type": "module",
-  "description": "Risco Cognitivo — cérebro editorial HOME-BRAIN-001 (assets, cena e pipeline)",
+  "description": "Risco Cognitivo — monorepo do blog (apps/blog) e do cérebro HOME-BRAIN-001",
+  "workspaces": ["apps/*"],
   "engines": { "node": ">=20" },
   "scripts": {
-    "assets:check": "node pipeline/build.mjs --out pipeline/out --check",
-    "assets:build": "node pipeline/build.mjs --out public/models/home-brain --check"
+    "assets:check": "npm run assets:check --workspace apps/blog",
+    "assets:build": "npm run assets:build --workspace apps/blog"
   }
 }

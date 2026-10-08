@@ -3,28 +3,41 @@
 Origem: `CLAUDE-DESIGN-BRAIN-001.zip` (pacote de entrada v2.0.0, `PREPARED`) e `Archive.zip` (saída posterior do
 Claude Design, gerada em 2026-10-06 com a malha). Itens abertos precisam de decisão do responsável antes do app.
 
+## Resolvidas por instrução do usuário (2026-10-07)
+
+### D-001 — Paleta → **Nocturne é a fonte de verdade**
+
+Havia três identidades: laranja (pacote Brain, `#F56A1C`), índigo (1º Archive, `#6E72F0`) e **Nocturne** (2º Archive,
+escuro, acento `#9184d9`). Por instrução ("design system SoT"), vale **Nocturne**, em `apps/blog/design-system/nocturne/`.
+Os dois conjuntos anteriores foram arquivados em `docs/archive/design-superseded/`.
+
+Consequências a tratar (não resolvidas silenciosamente):
+- O BRIEF/ACEITE do cérebro exigem **fundo branco** e pontos laranja. Com Nocturne, o fundo é escuro e a cena já é
+  recolorida em tempo de execução por `prototypes/brain/Brain View.html` (blocos por tema). Os critérios visuais G2 do
+  ACEITE devem ser reescritos para Nocturne; o resto do BRIEF (camadas, controles, acessibilidade) segue valendo.
+- `public/models/home-brain/brain-visual-config.json` ainda traz as cores índigo do 1º Archive: está desatualizado e
+  **não** foi alterado, para não inventar valores.
+
+### D-002 — Local do app → **`apps/blog` na raiz deste repositório**
+
+A instrução "apps blog na raiz" define o app em `apps/blog` (monorepo com npm workspaces). O destino
+`hubexecutar-lgtm/react-router-starter-template` citado em `COMANDO-INTEGRACAO-REACT.md` fica como origem do template,
+não como destino. O app React ainda não foi criado.
+
 ## Abertas
 
-### D-001 — Paleta: laranja (pacote) × índigo (Archive)
+### D-004 — O export do Nocturne é parcial
 
-| | Pacote Brain (`tokens.css` ativo) | Archive (`tokens.indigo-archive.css`) |
-| --- | --- | --- |
-| Marca | `#F56A1C` | `#6E72F0` ("Colosseum ref: indigo engraving") |
-| Pontos | `#F3A06B` | `#9099F6` |
-| Neutros | quentes (`#F7F5F3`, `#E8E5E1`) | frios (`#F5F5F5`, `#E6E6EA`) |
+O `readme.md` do DS cita `theme.json`, `thumbnail.html`, `foundations/`, `components/`, `templates/` e
+`assets/photo.jpg`; o ZIP traz só `styles.css`, `readme.md`, `_ds_manifest.json`, `_adherence.oxlintrc.json` e
+`_ds_bundle.js`. O readme manda manter `theme.json` em sincronia com o CSS: ele não existe aqui. Além disso `styles.css`
+carrega Inter por `@import` do Google Fonts (dependência externa de rede; avaliar hospedar a fonte).
 
-- O `brain-visual-config.json` do Archive (usado nos assets em `public/`) está em **índigo** (`#a3a8f5`, `#5a5fe8`,
-  linhas `#d6d8f2`); o pacote determina **laranja** como decisão explícita do usuário.
-- **Estado atual:** `design/tokens/tokens.css` = laranja (precedência declarada em `docs/brief/00-LEIA-PRIMEIRO.md`).
-  O JSON de configuração ainda carrega as cores índigo e **não** foi alterado, para não inventar valores laranja
-  não aprovados.
-- **Ação:** confirmar a paleta. Se for laranja, remapear as cores de `brain-visual-config.json` e aprovar na revisão visual.
+### D-005 — O tema claro existe só dentro dos protótipos
 
-### D-002 — Repositório de destino do app
-
-`COMANDO-INTEGRACAO-REACT.md` manda integrar em `hubexecutar-lgtm/react-router-starter-template`. Este repositório
-(`sasexecutar-coder/blog`) hoje guarda assets, cena e pipeline. Definir: (a) o app nasce aqui, ou (b) este repositório
-é a fonte do objeto e o app consome os assets no outro repositório.
+`Landing.dc.html` e `Brain View.html` redefinem os tokens para `[data-rc-theme="light"]` com **hex literais**, fora do DS.
+Isso contraria a regra de SoT. Decidir se o tema claro entra em `design-system/nocturne/` (fonte única) ou se o app é
+somente escuro.
 
 ### D-003 — Fonte da malha: fsaverage × sub-01 individual
 
@@ -42,3 +55,7 @@ fsaverage (referência) como ponto de partida; o repositório já contém o GLB 
 | `reference/legacy-react/*` importa `@/data/home`, `@/lib/analytics/track`, `lucide-react` | Mantido só como referência de rotação, câmera e eventos. Não é compilável neste repositório. |
 | Capturas de UI (`claude-codebase.png`, `claude-skills.png`) e `INPUT_INVENTORY.csv` | Não importados; permanecem no ZIP original. Mantida só a referência do globo. |
 | A skill de design customizada citada no pacote | Não consta em nenhum dos dois ZIPs; não foi aplicada nem se afirma que foi. |
+| `PROVENIENCIA.md` do 2º Archive lista hashes de partículas (`1da8e10d…`, `ceb2f0e3…`) que **não** correspondem aos arquivos entregues | Os arquivos reais (`c6822ba5…`, `6a64659f…`) coincidem com `build-report.json` e com a regeneração local por `assets:check`. Prevalecem os reais; o documento foi importado como está (`docs/provenance/PROVENIENCIA-brain-view.md`) com errata no topo. |
+| Total de triângulos do GLB | **350.236** (132.887 + 132.217 + 66.736 + 18.396), como na PROVENIENCIA. Um valor anterior (343.236) neste repositório estava errado e foi corrigido. |
+| Capturas `screenshots/*.jpg` do 2º Archive mostram marcadores e grade **sem o cérebro** | Não servem de evidência visual da malha. Mantidas como estão em `prototypes/screenshots/`; a verificação real está em `docs/evidence/`. |
+| `Brain View.html` busca `three@0.184.0` em `unpkg.com` | Dependência de CDN nos protótipos; o app deve empacotar Three.js. |
