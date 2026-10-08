@@ -44,6 +44,13 @@ somente escuro.
 Registrada em [`adr/ADR-001-malha-anatomica-do-cerebro.md`](adr/ADR-001-malha-anatomica-do-cerebro.md). Recomendação:
 fsaverage (referência) como ponto de partida; o repositório já contém o GLB do `sub-01`. Pendente de confirmação.
 
+### D-006 — Prompts do Claude Design × Nocturne (SoT)
+
+Registrada no [ADR-002](adr/ADR-002-cerebro-linguagem-unica-de-pontos.md). Os prompts guardados em
+`docs/prompts/claude-design/` pedem `--brain-accent #6E72E8`, fundos `#151414`/`#FFFFFF` e tokens `--brain-*` /
+`--text-primary|secondary`, que não existem no Nocturne e reintroduzem a paleta arquivada. Decidir: criar os tokens do
+cérebro no design system (fonte única) ou mapeá-los para os tokens `--color-*`. Prompts **não editados**.
+
 ## Divergências encontradas e tratadas
 
 | Achado | Tratamento |

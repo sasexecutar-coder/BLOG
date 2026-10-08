@@ -43,7 +43,8 @@ BLOG/
 │       └── prototypes/              protótipos do Claude Design (Landing, Mapa da Execução, Brain View)
 ├── docs/
 │   ├── DECISIONS.md                 decisões e divergências
-│   ├── adr/                         ADR-001: malha anatômica e direção visual
+│   ├── adr/                         ADR-001 (malha anatômica) e ADR-002 (cérebro em pontos, duas rodadas)
+│   ├── prompts/claude-design/       prompts, briefing de auditoria e referências — guardados, NÃO executados
 │   ├── brief/                       briefs e comandos recebidos (BRIEF, ACEITE, SURFACE, ...)
 │   ├── provenance/                  avisos de terceiros, manifestos, build-report, procedência
 │   ├── evidence/                    capturas de verificação feitas neste repositório
@@ -118,8 +119,9 @@ Não há medição de FPS neste README; o render foi por software e não represe
 
 ## Próximos passos
 
-1. Resolver as pendências de [`docs/DECISIONS.md`](docs/DECISIONS.md) (D-004 export parcial do DS, D-005 tema claro) e do
-   [ADR-001](docs/adr/ADR-001-malha-anatomica-do-cerebro.md) (fsaverage × `sub-01`).
+1. Resolver as pendências de [`docs/DECISIONS.md`](docs/DECISIONS.md) (D-004 export parcial do DS, D-005 tema claro, D-006
+   tokens do cérebro) e do [ADR-001](docs/adr/ADR-001-malha-anatomica-do-cerebro.md) (fsaverage × `sub-01`); decidir o
+   [ADR-002](docs/adr/ADR-002-cerebro-linguagem-unica-de-pontos.md) antes de enviar os prompts.
 2. Scaffold do app React Router + TypeScript em `apps/blog`, fixando versões e ligando `styles.css` do Nocturne.
 3. Componente único do cérebro (props: modo, conceito, movimento, seleção) para Home e `/mapas/`, a partir de `Brain View.html`.
 4. Corrigir o card sobreposto no mobile; testes Playwright em 375 / 768 / 1440; PR com instrução de reversão.

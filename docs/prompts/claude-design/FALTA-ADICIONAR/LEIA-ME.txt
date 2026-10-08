@@ -1,0 +1,14 @@
+Arquivos que eu (Claude) não tenho e que melhoram muito o protótipo. Copie para esta pasta antes de enviar:
+
+[ ] brain-surface.glb              (saída do build-brain-assets.js)
+[ ] brain-particles.bin            (saída do build-brain-assets.js)
+[ ] brain-particles-attr.bin       (saída do build-brain-assets.js)
+[ ] build-report.json              (bytes da GLB, nº de triângulos, hashes)
+[ ] brain-scene.js                 (importado pelo brain-hollow.js; é a cena dos prints)
+[ ] tokens.css                     (tokens de cor, espaçamento, tipografia)
+[ ] brain-stage.tsx                (opcional: componente de produção)
+[ ] gravação de tela, ~10 s, do globo da Cloudflare no celular (opcional: valida tempos e easings)
+[ ] print do brain-hollow.js ativo (opcional)
+
+Sem os .glb/.bin o Claude Design não consegue carregar o cérebro real e vai propor uma malha substituta.
+Se o brain-hollow.js importa './brain-scene.js' e esse arquivo não vier, a importação quebra.
