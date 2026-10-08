@@ -3,10 +3,41 @@
   "private": true,
   "type": "module",
   "description": "App do blog Risco Cognitivo — design system Nocturne (SoT) e cérebro HOME-BRAIN-001",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "preview": "vite preview",
+    "typecheck": "wrangler types && react-router typegen && tsc --noEmit",
     "assets:check": "node pipeline/build.mjs --out pipeline/out --check",
     "assets:build": "node pipeline/build.mjs --out public/models/home-brain --check",
-    "prototypes": "python3 -m http.server 4173 --directory prototypes"
+    "prototypes": "python3 -m http.server 4173 --directory prototypes",
+    "test": "node --experimental-strip-types --test tests/geometry.test.ts",
+    "check:presets": "node scripts/check-presets.mjs",
+    "check": "npm run check:presets && npm run typecheck && npm run test && npm run build",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "isbot": "5.2.2",
+    "@phosphor-icons/react": "2.1.10",
+    "@react-three/drei": "10.7.9",
+    "@react-three/fiber": "9.8.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-router": "8.4.0",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.63.0",
+    "@react-router/dev": "8.4.0",
+    "@types/node": "24.19.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.186.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.3",
+    "wrangler": "4.148.0"
   }
 }

@@ -1,0 +1,17 @@
+{
+  // Deploy do Worker "blog" a partir da RAIZ do monorepo (o Workers Builds do painel roda `bun install` e
+  // `npx wrangler deploy` aqui, sem etapa de build). O app vive em apps/blog; o build abaixo gera build/server e build/client.
+  // Fora do painel, o equivalente é: npm run deploy -w apps/blog
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "blog",
+  "main": "apps/blog/build/server/index.js",
+  "compatibility_date": "2026-10-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "upload_source_maps": true,
+  // O build do React Router já empacota o servidor (modo do plugin da Cloudflare): não reempacotar.
+  "no_bundle": true,
+  "rules": [{ "type": "ESModule", "globs": ["**/*.js", "**/*.mjs"] }],
+  "assets": { "directory": "apps/blog/build/client" },
+  "build": { "command": "npm run build --workspace apps/blog" }
+}

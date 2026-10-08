@@ -1,6 +1,8 @@
 # ADR-002 — Cérebro em linguagem única de pontos (estilo globo) e prototipação em duas rodadas
 
-- **Status:** Proposta — registrada, **não executada**. Conflita com o ADR-001 e com o design system (ver "Conflitos").
+- **Status:** Aceita com emenda (2026-10-08) — implementada em `apps/blog`. **Emenda:** a malha aparece translúcida
+  (6–12 % no preset escuro) sob as partículas, por decisão do usuário; o volume vem da malha e do `_SULC`. A paleta é
+  controlável (D-001, adendo). Conflitos originais abaixo, mantidos como registro.
 - **Data:** 2026-10-08
 - **Escopo:** HOME-BRAIN-001 (seção "Entenda sua execução" da home e `/mapas/`)
 - **Relacionada a:** [ADR-001](ADR-001-malha-anatomica-do-cerebro.md), `docs/DECISIONS.md` (D-001, D-005, D-006),

@@ -24,6 +24,14 @@ A instrução "apps blog na raiz" define o app em `apps/blog` (monorepo com npm 
 `hubexecutar-lgtm/react-router-starter-template` citado em `COMANDO-INTEGRACAO-REACT.md` fica como origem do template,
 não como destino. O app React ainda não foi criado.
 
+### D-001 — adendo (2026-10-08): paleta controlável no cérebro
+
+Por decisão do usuário ("toggle de mudança e controle total de hex, cores, contraste"), o cérebro tem o painel
+**Ajustar visual** com 3 presets — *Nocturne + laranja ativo* (padrão), *Nocturne puro* e *Cloudflare claro* — e
+controle de cada hex e parâmetro, com contraste WCAG calculado ao vivo. Os presets Nocturne repetem tokens de
+`styles.css` (conferido por `apps/blog/scripts/check-presets.mjs`). O laranja `#f56a1c` vive só nesses presets; o
+Nocturne continua sendo a fonte de verdade do resto da interface.
+
 ## Abertas
 
 ### D-004 — O export do Nocturne é parcial
@@ -52,7 +60,23 @@ Registrada no [ADR-002](adr/ADR-002-cerebro-linguagem-unica-de-pontos.md). Os pr
 cérebro no design system (fonte única) ou mapeá-los para os tokens `--color-*`. Prompts originais **não editados**.
 
 **Proposta (2026-10-08):** versão adaptada em `prompts/claude-design/nocturne/`, com `--brain-*` como aliases de
-`--color-*` e contrastes calculados em `MAPEAMENTO.md`. Aguarda aceite.
+`--color-*` e contrastes calculados em `MAPEAMENTO.md`.
+
+**Superada no app (2026-10-08):** o app não usa `--brain-*` em CSS; as cores vêm dos presets editáveis (D-001, adendo).
+Os prompts continuam valendo só para o Claude Design.
+
+### D-007 — Deploy no Worker `blog`
+
+- O Workers Builds do painel (log de 2026-10-08 10:31 UTC) roda `bun install` e `npx wrangler deploy` **na raiz** e
+  falhava com *"application detection logic has been run in the root of a workspace"*. Corrigido com
+  `wrangler.jsonc` na raiz (`name: "blog"`, `build.command` que builda `apps/blog`, `main`/`assets` do build).
+  Reproduzido e validado com `wrangler deploy --dry-run` na raiz, inclusive após instalar **só com bun**.
+- **O deploy a partir desta sessão não concluiu:** o envio dos arquivos estáticos (`/workers/assets/upload`) devolve
+  401; a credencial da sessão lê a conta, mas esse passo usa um token temporário que não passa pelo proxy da sessão.
+- **Efeito colateral:** essa tentativa criou um Worker `blog` **vazio** (sem código nem assets, criado em
+  2026-10-08 10:59:57 UTC) na única conta que a credencial da sessão enxerga (id `92fdc1b5…`).
+  Antes dela, `blog` não existia nessa conta (404). Logo, o Worker `blog` ligado ao repositório no painel deve estar
+  em **outra conta**. Decidir: apagar esse Worker vazio, ou usá-lo.
 
 ## Divergências encontradas e tratadas
 
